@@ -13,9 +13,11 @@ const PORT = process.env.PORT || 3001;
 app.use(helmet());
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
-        ? ['http://localhost:3000'] // Agregar dominio de producción aquí
-        : true,
-    credentials: true
+        ? ['http://localhost:3000', 'http://localhost:8080'] // Dominios permitidos
+        : ['http://localhost:3000', 'http://localhost:8080', 'http://localhost:3001'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Middleware para parsing de JSON

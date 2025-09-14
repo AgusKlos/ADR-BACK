@@ -138,7 +138,7 @@ docker run -d \
 
 ### Docker Compose (Recomendado)
 
-Crear un archivo `docker-compose.yml`:
+El proyecto incluye un archivo `docker-compose.yml` configurado:
 
 ```yaml
 version: '3.8'
@@ -157,6 +157,8 @@ services:
     depends_on:
       - mysql
     restart: unless-stopped
+    networks:
+      - contacts-network
 
   mysql:
     image: mysql:8.0
@@ -168,15 +170,23 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     restart: unless-stopped
+    networks:
+      - contacts-network
 
 volumes:
   mysql_data:
+
+networks:
+  contacts-network:
+    driver: bridge
 ```
 
 Ejecutar con:
 ```bash
 docker-compose up -d
 ```
+
+**Nota**: El backend está configurado con CORS para permitir conexiones desde `localhost:3000`, `localhost:8080` y `localhost:3001`, ideal para desarrollo con diferentes frontends.
 
 ## Ejemplos de Uso de la API
 
