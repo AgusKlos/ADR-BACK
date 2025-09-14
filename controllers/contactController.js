@@ -5,20 +5,10 @@ class ContactController {
     // GET /api/contacts - Obtener todos los contactos
     static async getAllContacts(req, res) {
         try {
-            const { search } = req.query;
+            const contacts = await ContactModel.getAll();
             
-            let contacts;
-            if (search) {
-                contacts = await ContactModel.search(search);
-            } else {
-                contacts = await ContactModel.getAll();
-            }
-
-            res.json({
-                success: true,
-                data: contacts,
-                count: contacts.length
-            });
+            // Devolver directamente el array para compatibilidad con frontend
+            res.json(contacts);
         } catch (error) {
             console.error('Error obteniendo contactos:', error);
             res.status(500).json({
@@ -51,10 +41,8 @@ class ContactController {
                 });
             }
 
-            res.json({
-                success: true,
-                data: contact
-            });
+            // Devolver directamente el contacto para compatibilidad con frontend
+            res.json(contact);
         } catch (error) {
             console.error('Error obteniendo contacto:', error);
             res.status(500).json({

@@ -7,7 +7,7 @@ class ContactModel {
             SELECT id, nombre, apellido, telefono, email, 
                    created_at, updated_at 
             FROM contacts 
-            ORDER BY apellido, nombre
+            ORDER BY id ASC
         `;
         return await query(sql);
     }
@@ -92,19 +92,6 @@ class ContactModel {
 
         const results = await query(sql, params);
         return results.length > 0;
-    }
-
-    // Buscar contactos por nombre o apellido
-    static async search(searchTerm) {
-        const sql = `
-            SELECT id, nombre, apellido, telefono, email, 
-                   created_at, updated_at 
-            FROM contacts 
-            WHERE nombre LIKE ? OR apellido LIKE ? OR email LIKE ?
-            ORDER BY apellido, nombre
-        `;
-        const searchPattern = `%${searchTerm}%`;
-        return await query(sql, [searchPattern, searchPattern, searchPattern]);
     }
 }
 

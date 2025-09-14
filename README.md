@@ -10,7 +10,6 @@ Este es el backend de la aplicación Agenda de Contactos, desarrollado con Node.
 - ✅ Manejo de errores centralizado
 - ✅ Middleware de seguridad con Helmet
 - ✅ CORS configurado para desarrollo y producción
-- ✅ Búsqueda de contactos
 - ✅ Validación de emails únicos
 - ✅ Dockerizado y listo para producción
 
@@ -45,7 +44,6 @@ Este es el backend de la aplicación Agenda de Contactos, desarrollado con Node.
 | Método | Endpoint | Descripción |
 |--------|----------|-------------|
 | GET | `/api/contacts` | Obtener todos los contactos |
-| GET | `/api/contacts?search=término` | Buscar contactos |
 | GET | `/api/contacts/:id` | Obtener un contacto por ID |
 | POST | `/api/contacts` | Crear un nuevo contacto |
 | PUT | `/api/contacts/:id` | Actualizar un contacto |
@@ -219,11 +217,6 @@ curl -X PUT http://localhost:3001/api/contacts/1 \
 ### Eliminar un contacto
 ```bash
 curl -X DELETE http://localhost:3001/api/contacts/1
-```
-
-### Buscar contactos
-```bash
-curl -X GET "http://localhost:3001/api/contacts?search=Juan"
 ```
 
 ## Validaciones
