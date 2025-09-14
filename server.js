@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const helmet = require('helmet');
 require('dotenv').config();
 
@@ -11,14 +10,6 @@ const PORT = process.env.PORT || 3001;
 
 // Middlewares de seguridad y configuración
 app.use(helmet());
-app.use(cors({
-    origin: process.env.NODE_ENV === 'production' 
-        ? ['http://localhost:3000', 'http://localhost:8080'] // Dominios permitidos
-        : ['http://localhost:3000', 'http://localhost:8080', 'http://localhost:3001'],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-}));
 
 // Middleware para parsing de JSON
 app.use(express.json());
