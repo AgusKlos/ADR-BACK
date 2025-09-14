@@ -17,7 +17,7 @@ services:
 
   # Frontend React
   frontend:
-    image: frontend-contacts:latest 
+    image: agusklos/frontend-contacts:latest
     environment:
       - VITE_REACT_APP_API_URL=/api
       - VITE_REACT_APP_API_BASE_URL=/api
@@ -27,7 +27,7 @@ services:
 
   # Backend API
   backend:
-    build: .
+    image: agusklos/backend-contacts:latest
     environment:
       - DB_HOST=mysql
       - DB_USER=root
